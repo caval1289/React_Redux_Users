@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 class UserList extends Component {
     render() {
         return (
             <div>
                 <ul className="col-md-4">
                     {
-                        this.props.users.map((user) => {
+                        this.props.myUsers.map((user) => {
                             return (
                                 <li className="list-group-item" key={user.id}>
                                     {user.name}
@@ -19,5 +19,11 @@ class UserList extends Component {
         )
     }
 }
+//connection avec reducer_users (redux)
+function mapStateToProps(state) {
+    return {
+        myUsers: state.users
+    }
+}
 
-export default UserList;
+export default connect(mapStateToProps)(UserList);
